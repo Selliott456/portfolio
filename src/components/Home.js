@@ -1,7 +1,4 @@
 import React from "react";
-import email from "../images/email.svg";
-import github from "../images/github.svg";
-import linkedIn from "../images/linkedin.svg";
 
 function Home() {
   return (

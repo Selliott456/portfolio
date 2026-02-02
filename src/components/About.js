@@ -9,7 +9,6 @@ import python from "../images/python.svg";
 import flask from "../images/flask.svg";
 import sass from "../images/sass.svg";
 import css from "../images/css.svg";
-import github from "../images/github.svg";
 
 // Simple Icons CDN (same filter applied in CSS so they match site colour)
 const icon = (slug) =>
