@@ -1,4 +1,3 @@
-import MeSun from "../images/me_sun.jpg";
 import React from "react";
 import elixir from "../images/elixir.svg";
 import phoenix from "../images/phoenix.svg";
@@ -10,58 +9,109 @@ import python from "../images/python.svg";
 import flask from "../images/flask.svg";
 import sass from "../images/sass.svg";
 import css from "../images/css.svg";
+import github from "../images/github.svg";
+
+// Simple Icons CDN (same filter applied in CSS so they match site colour)
+const icon = (slug) =>
+  `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${slug}.svg`;
+
+// Organised by category from your development folder; each has an icon (local or CDN)
+const techByCategory = [
+  {
+    category: "Frontend",
+    items: [
+      { src: react, label: "React" },
+      { src: javascript, label: "JavaScript" },
+      { src: css, label: "CSS" },
+      { src: sass, label: "Sass" },
+      { src: icon("svelte"), label: "Svelte" },
+      { src: icon("typescript"), label: "TypeScript" },
+      { src: icon("vite"), label: "Vite" },
+      { src: icon("webpack"), label: "Webpack" },
+      { src: icon("bootstrap"), label: "Bootstrap" },
+      { src: icon("tailwindcss"), label: "Tailwind" },
+    ],
+  },
+  {
+    category: "Elixir / Phoenix",
+    items: [
+      { src: elixir, label: "Elixir" },
+      { src: phoenix, label: "Phoenix" },
+      { src: icon("phoenixframework"), label: "LiveView" },
+      { src: icon("elixir"), label: "Ecto" },
+      { src: icon("graphql"), label: "Absinthe" },
+    ],
+  },
+  {
+    category: "Python & Ruby",
+    items: [
+      { src: python, label: "Python" },
+      { src: flask, label: "Flask" },
+      { src: icon("ruby"), label: "Ruby" },
+      { src: icon("rubyonrails"), label: "Rails" },
+    ],
+  },
+  {
+    category: "Data & runtime",
+    items: [
+      { src: node, label: "Node" },
+      { src: mongodb, label: "MongoDB" },
+      { src: icon("postgresql"), label: "PostgreSQL" },
+      { src: icon("mysql"), label: "MySQL" },
+    ],
+  },
+  {
+    category: "Tools",
+    items: [
+      { src: icon("graphql"), label: "GraphQL" },
+      { src: icon("strapi"), label: "Strapi" },
+      { src: icon("createreactapp"), label: "Create React App" },
+    ],
+  },
+];
 
 function About() {
   return (
-    <div>
-      <div className="about">
-        <img alt="elliott" className="about__photo" src={MeSun} />
-        <div className="about__info">
-          <p>
-            Hi, I'm Elliott. I work with Elixir/Phoenix and I love it. I have
-            also worked commercially with the MERN stack and Python/Flask
-            backends.
-          </p>
-          <p>
-            Previous employers include{" "}
-            <a href="https://breakroom.cc">Breakroom</a> and{" "}
-            <a href="https://citymapper.com">Citymapper</a>. I can currently be
-            found tinkering away with the code base at{" "}
-            <a href="https://www.proterahealth.com/">Protera Health</a> - which
-            I love!
-          </p>
-          <p>
-            I have so far lived and worked in London, Spain, Luxmebourg and
-            Nigeria. I am not afraid of challenges or adventures!
-          </p>
+    <section className="about-section" aria-label="About">
+      <div className="about-boxes">
+        <div className="about-box about-box--tech">
+          <h3 className="about-box__heading">Tech</h3>
+          <div className="about-box__categories">
+            {techByCategory.map(({ category, items }) => (
+              <div key={category} className="about-box__category">
+                <h4 className="about-box__category-heading">{category}</h4>
+                <ul className="about-box__list">
+                  {items.map(({ src, label }) => (
+                    <li key={label} className="about-box__item">
+                      {src ? (
+                        <span className="about-box__icon-wrap">
+                          <img
+                            className="about-box__icon"
+                            alt=""
+                            src={src}
+                            aria-hidden="true"
+                          />
+                        </span>
+                      ) : (
+                        <span
+                          className="about-box__icon-wrap about-box__icon-wrap--text"
+                          aria-hidden="true"
+                        >
+                          <span className="about-box__initial">
+                            {label.charAt(0)}
+                          </span>
+                        </span>
+                      )}
+                      <span className="about-box__label">{label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="skills">
-        <h2 className="experience">Tech experience</h2>
-        <div className="icons">
-          <img className="tech_icon" alt="elixir" src={elixir} />
-
-          <img className="tech_icon" alt="phoenix" src={phoenix} />
-
-          <img className="tech_icon" alt="javascript" src={javascript} />
-
-          <img className="tech_icon" alt="react" src={react} />
-
-          <img className="tech_icon" alt="mongodb" src={mongodb} />
-
-          <img className="tech_icon" alt="node" src={node} />
-
-          <img className="tech_icon" alt="python" src={python} />
-
-          <img className="tech_icon" alt="flask" src={flask} />
-
-          <img className="tech_icon" alt="sass" src={sass} />
-
-          <img className="tech_icon" alt="css" src={css} />
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }
 
