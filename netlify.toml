@@ -1,0 +1,12 @@
+# Netlify build configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Build image: If you still see "Focal build image deprecation", switch in the Netlify dashboard:
+# Site configuration > Build & deploy > Build image > choose "Ubuntu 22.04" (or current default).
